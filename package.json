@@ -1,0 +1,24 @@
+{
+  "name": "pcef",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "server": "cd server && pocketbase.exe serve",
+    "dev":  "cd app & npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeroensmink98/PCEF.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeroensmink98/PCEF/issues"
+  },
+  "homepage": "https://github.com/jeroensmink98/PCEF#readme"
+}
