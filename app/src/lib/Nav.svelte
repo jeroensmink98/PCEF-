@@ -5,5 +5,6 @@
     <a href="/teacher">Teachers</a>
     <a href="/book">Books</a>
     <a href="/school">Schools</a>
+    <a href="/level">Levels</a>
     <hr>
 </div>
