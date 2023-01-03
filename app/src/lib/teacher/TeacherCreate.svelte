@@ -2,10 +2,12 @@
     import {pb} from '$lib/Pocketbase';
 	import { TeacherStore } from '$lib/Stores';
 
-    let teacherName =''
+    let teacherName ='';
+    let teacherCode ='';
 
     export async function addTeacher(){
         try{
+
             let data = {
                 teacher_name: teacherName
             }

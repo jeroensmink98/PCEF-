@@ -4,8 +4,6 @@
     import {pb} from '$lib/Pocketbase';
 	import LevelCreate from './LevelCreate.svelte';
 
-
-    
     export async function getLevels(){
         try{
             const resultList: any = await pb.collection('level').getFullList();
@@ -28,6 +26,7 @@
     onMount(getLevels)
 </script>
 <LevelCreate/>
+<hr>
 <div class="levels">
     {#each $LevelStore as level }
         <div class="level">

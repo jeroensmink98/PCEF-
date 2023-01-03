@@ -27,6 +27,7 @@
     onMount(getSchools)
 </script>
 <SchoolCreate/>
+<hr>
 <div class="schools">
     {#each $SchoolStore as school }
         <div class="school">

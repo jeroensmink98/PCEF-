@@ -26,6 +26,7 @@
     onMount(getTeachers)
 </script>
 <TeacherCreate/>
+<hr>
 <div class="teachers">
     {#each $TeacherStore as teacher }
         <div class="teacher">

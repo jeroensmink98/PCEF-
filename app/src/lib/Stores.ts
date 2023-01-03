@@ -7,3 +7,5 @@ export const BookStore = writable([]);
 export const SchoolStore = writable([]);
 
 export const LevelStore = writable([]);
+
+export const ClassStore = writable([]);
