@@ -3,18 +3,11 @@
     import {onMount, onDestroy} from 'svelte';
     import {pb} from '$lib/Pocketbase';
 	import BookCreate from './BookCreate.svelte';
+	import { fetchBooks } from '$lib/Book';
 	
+   
     
-    export async function getBooks(){
-        try{
-            const resultList: any = await pb.collection('book').getFullList();
-            BookStore.set(resultList)
-        }catch(err){
-            
-        }
-        
-    }
-
+ 
     export async function deleteBook(book: any){
         try{
             await pb.collection('book').delete(book.id);
@@ -24,7 +17,10 @@
         }
     }
 
-    onMount(getBooks)
+    onMount(async () => {
+        const books: any = await fetchBooks()
+        BookStore.set(books)
+    })
 </script>
 <BookCreate/>
 <div class="books">

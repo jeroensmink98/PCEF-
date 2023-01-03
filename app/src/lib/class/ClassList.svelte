@@ -11,8 +11,6 @@
                 expand: 'book, level, teacher',
 
             });
-            console.log(resultList.items);
-            
             ClassStore.set(resultList.items)
         }catch(err){
             
@@ -31,6 +29,7 @@
 
     onMount(getClasses)
 </script>
+
 <ClassCreate/>
 <hr>
 <div class="classes">
