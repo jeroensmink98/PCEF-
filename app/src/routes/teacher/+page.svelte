@@ -1,7 +1,8 @@
 <script lang="ts">
-	import Teachers from "$lib/teacher/Teachers.svelte";
+	import TeachersList from "$lib/teacher/TeachersList.svelte";
+
 
     
 </script>
 
-<Teachers/>
+<TeachersList/>
