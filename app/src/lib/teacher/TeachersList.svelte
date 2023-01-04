@@ -3,17 +3,9 @@
     import {onMount, onDestroy} from 'svelte';
     import {pb} from '$lib/Pocketbase';
 	import TeacherCreate from './TeacherCreate.svelte';
+	import { fetchTeachers } from '$lib/Teacher';
     
-    export async function getTeachers(){
-        try{
-            const resultList: any = await pb.collection('teacher').getFullList();
-        TeacherStore.set(resultList)
-        }catch(err){
-            
-        }
-        
-    }
-
+    
     export async function deleteTeacher(teacher: any){
         try{
             await pb.collection('teacher').delete(teacher.id);
@@ -22,8 +14,10 @@
            
         }
     }
-
-    onMount(getTeachers)
+    onMount(async () => {
+        const teachers: any = await fetchTeachers()
+        TeacherStore.set(teachers)
+    });
 </script>
 <TeacherCreate/>
 <hr>

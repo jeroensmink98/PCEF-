@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { fetchBooks } from '$lib/Book';
+	import { fetchLevels } from '$lib/Level';
     import {pb} from '$lib/Pocketbase';
 	import { ClassStore } from '$lib/Stores';
+	import { fetchTeachers } from '$lib/Teacher';
 	import {onMount} from 'svelte';
 
     let classSubject ='';
@@ -10,39 +13,11 @@
     let teachers: any =[];
     let books: any = [];
 
-    export async function fetchLevels(){
-        try{
-            const resultList = await pb.collection('level').getFullList();
-            levels = resultList;
-        }catch(err){
-            
-        }
-     
-    }
-
-    export async function fetchTeachers(){
-        try{
-            const resultList = await pb.collection('teacher').getFullList();
-            teachers = resultList;
-        }catch(err){
-
-        }
-    }
-
-    export async function fetchBooks(){
-        try{
-            const resultList = await pb.collection('book').getFullList();
-            books = resultList;
-        }catch(err){
-
-        }
-
-    }
-
+   
     onMount(async () => {
-        await fetchBooks()
-        await fetchLevels()
-        await fetchTeachers()    
+        books = await fetchBooks()
+        levels = await fetchLevels()
+        teachers = await fetchTeachers()    
     })
 
     export async function addClass(){
@@ -59,14 +34,6 @@
         }
     }
 </script>
-
-{#each books as book }
-    <p>{book.book_name}</p>
-    <p>Nicee</p>
-{/each}
-
-
-
 
 <form on:submit={addClass}>
     <label for="subject">Subject:</label>

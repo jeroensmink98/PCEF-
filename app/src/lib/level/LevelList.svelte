@@ -3,17 +3,9 @@
     import {onMount, onDestroy} from 'svelte';
     import {pb} from '$lib/Pocketbase';
 	import LevelCreate from './LevelCreate.svelte';
+	import { fetchLevels } from '$lib/Level';
 
-    export async function getLevels(){
-        try{
-            const resultList: any = await pb.collection('level').getFullList();
-            LevelStore.set(resultList)
-        }catch(err){
-            
-        }
-        
-    }
-
+    
     export async function deleteLevel(level: any){
         try{
             await pb.collection('level').delete(level.id);
@@ -22,8 +14,11 @@
            
         }
     }
-
-    onMount(getLevels)
+    onMount(async () => {
+        const levels: any = await fetchLevels()
+        LevelStore.set(levels)
+    })
+    
 </script>
 <LevelCreate/>
 <hr>

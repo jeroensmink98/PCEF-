@@ -3,46 +3,37 @@
     import {onMount, onDestroy} from 'svelte';
     import {pb} from '$lib/Pocketbase';
 	import ClassCreate from './ClassCreate.svelte';
+	import { fetchClasses } from '$lib/Class';
 
-
-    export async function getClasses(){
+    export async function deleteClass(c: any){
         try{
-            const resultList: any = await pb.collection('class').getList(1, 50, {
-                expand: 'book, level, teacher',
-
-            });
-            ClassStore.set(resultList.items)
-        }catch(err){
-            
-        }
-        
-    }
-
-    export async function deleteClass(classObject: any){
-        try{
-            await pb.collection('class').delete(classObject.id);
-            ClassStore.update((classes) => classes.filter((c) => c.id !== classObject.id));
+            await pb.collection('class').delete(c.id);
+            ClassStore.update((classes) => classes.filter((c) => c.id !== c.id));
         }catch(err){
            
         }
     }
+    
+    onMount(async () => {
+        const classes: any = await fetchClasses()
+        ClassStore.set(classes.items)
+    })
 
-    onMount(getClasses)
 </script>
 
 <ClassCreate/>
 <hr>
 <div class="classes">
-    {#each $ClassStore as classObject (classObject.id) }
+    {#each $ClassStore as c (c.id) }
         <div class="class">
             <div class="class_name">
-                <p>name: <b>{classObject.subject}</b> </p>
-                <p>book: <b>{classObject.expand?.book?.book_name}</b></p>
-                <p>level: <b>{classObject.expand?.level?.level_name}</b></p>
-                <p>teacher: <b>{classObject.expand?.teacher?.teacher_name}</b></p>
-                <p>start_time: <b>{classObject.start_time}</b></p>
-                <p>end_time: <b>{classObject.end_time}</b></p>
-                <button on:click={() => deleteClass(classObject)}>Delete</button>
+                <p>name: <b>{c.subject}</b> </p>
+                <p>book: <b>{c.expand?.book?.book_name}</b></p>
+                <p>level: <b>{c.expand?.level?.level_name}</b></p>
+                <p>teacher: <b>{c.expand?.teacher?.teacher_name}</b></p>
+                <p>start_time: <b>{c.start_time}</b></p>
+                <p>end_time: <b>{c.end_time}</b></p>
+                <button on:click={() => deleteClass(c)}>Delete</button>
             </div>
         </div>
     {/each}
