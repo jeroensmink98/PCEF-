@@ -2,6 +2,7 @@
 	import { fetchBooks } from '$lib/Book';
 	import { fetchLevels } from '$lib/Level';
     import {pb} from '$lib/Pocketbase';
+	import { fetchRooms } from '$lib/Room';
 	import { ClassStore } from '$lib/Stores';
 	import { fetchTeachers } from '$lib/Teacher';
 	import {onMount} from 'svelte';
@@ -13,16 +14,19 @@
     let newClassBook = '';
     let newClassLevel = '';
     let newClassId = '';
+    let newClassRoom ='';
 
     let levels: any = [];
     let teachers: any =[];
     let books: any = [];
+    let rooms: any = [];
 
    
     onMount(async () => {
         books = await fetchBooks()
         levels = await fetchLevels()
-        teachers = await fetchTeachers()    
+        teachers = await fetchTeachers() 
+        rooms = await fetchRooms();   
     })
 
     export async function addClass(){
@@ -34,7 +38,8 @@
                 book: newClassBook,
                 start_time: newClassStartTime,
                 end_time: newClassEndTime,
-                class_id: newClassId
+                class_id: newClassId,
+                room: newClassRoom
             }
 
             const newClass: any = await pb.collection('class').create(data);
@@ -63,6 +68,13 @@
     <select id="teacher" name="teacher" bind:value={newClassTeacher}>
         {#each teachers as teacher}
           <option value={teacher.id}>{teacher.teacher_name}</option>
+        {/each}
+    </select>
+
+    <label for="room">Room:</label>
+    <select id="room" name="room" bind:value={newClassRoom}>
+        {#each rooms as room}
+          <option value={room.id}>{room.room_name}</option>
         {/each}
     </select>
 
