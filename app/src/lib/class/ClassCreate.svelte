@@ -42,10 +42,12 @@
                 room: newClassRoom
             }
 
-            const newClass: any = await pb.collection('class').create(data);
+            const newClass: any = await pb.collection('class').create(data);            
             ClassStore.update((classes) => [...classes, newClass]);
             
         }catch(err){
+            console.log(err);
+            
             console.log('error creating class');
         }
     }
@@ -54,7 +56,7 @@
 <form on:submit|preventDefault={addClass}>
     <label for="subject">Subject:</label>
     <input type="text" id="subject" bind:value={newClassSubject} />
-    <br />
+
     <label for="startTime">Start time:</label>
     <input type="text" id="startTime" bind:value={newClassStartTime}/>
 

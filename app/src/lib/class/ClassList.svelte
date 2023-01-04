@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { ClassStore } from '$lib/Stores';
+    import {get} from 'svelte/store';
     import {onMount, onDestroy} from 'svelte';
     import {pb} from '$lib/Pocketbase';
 	import ClassCreate from './ClassCreate.svelte';
 	import { fetchClasses } from '$lib/Class';
+
+    let classes: any = [];
 
     export async function deleteClass(c: any){
         try{
@@ -13,11 +16,15 @@
            
         }
     }
-    
+
     onMount(async () => {
-        const classes: any = await fetchClasses()
-        ClassStore.set(classes.items)
-    })
+        classes = await fetchClasses();
+        console.log(await get(ClassStore));
+        
+        
+        ClassStore.set(classes.items);
+    });
+
 
 </script>
 
