@@ -6,9 +6,14 @@
 	import { fetchTeachers } from '$lib/Teacher';
 	import {onMount} from 'svelte';
 
-    let classSubject ='';
-    let classStartTime ='';
-    let classEndTime = '';
+    let newClassSubject ='';
+    let newClassStartTime ='';
+    let newClassEndTime = '';
+    let newClassTeacher = '';
+    let newClassBook = '';
+    let newClassLevel = '';
+    let newClassId = '';
+
     let levels: any = [];
     let teachers: any =[];
     let books: any = [];
@@ -23,11 +28,17 @@
     export async function addClass(){
         try{
             let data = {
-                subject: classSubject
+                subject: newClassSubject,
+                level: newClassLevel,
+                teacher: newClassTeacher,
+                book: newClassBook,
+                start_time: newClassStartTime,
+                end_time: newClassEndTime,
+                class_id: newClassId
             }
 
             const newClass: any = await pb.collection('class').create(data);
-            ClassStore.update((classes) => [...classes, newClass])
+            ClassStore.update((classes) => [...classes, newClass]);
             
         }catch(err){
             console.log('error creating class');
@@ -35,14 +46,39 @@
     }
 </script>
 
-<form on:submit={addClass}>
+<form on:submit|preventDefault={addClass}>
     <label for="subject">Subject:</label>
-    <input type="text" id="subject" bind:value={classSubject} />
+    <input type="text" id="subject" bind:value={newClassSubject} />
     <br />
     <label for="startTime">Start time:</label>
-    <input type="text" id="startTime" bind:value={classStartTime}/>
+    <input type="text" id="startTime" bind:value={newClassStartTime}/>
+
     <label for="startTime">End time:</label>
-    <input type="text" id="startTime" bind:value={classEndTime}/>
+    <input type="text" id="startTime" bind:value={newClassEndTime}/>
+
+    <label for="classId">Class ID</label>
+    <input type="text" id="classId" bind:value={newClassId}/>
+
+    <label for="teacher">Teacher:</label>
+    <select id="teacher" name="teacher" bind:value={newClassTeacher}>
+        {#each teachers as teacher}
+          <option value={teacher.id}>{teacher.teacher_name}</option>
+        {/each}
+    </select>
+
+    <label for="book">Book:</label>
+    <select id="book" name="book" bind:value={newClassBook}>
+        {#each books as book}
+          <option value={book.id}>{book.book_name}</option>
+        {/each}
+    </select>
+
+    <label for="level">Level:</label>
+    <select id="level" name="level" bind:value={newClassLevel}>
+        {#each levels as level}
+          <option value={level.id}>{level.level_name}</option>
+        {/each}
+    </select>
 
     <br />
     <button type="submit">Create Class</button>
