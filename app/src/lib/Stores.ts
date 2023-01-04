@@ -9,3 +9,5 @@ export const SchoolStore = writable([]);
 export const LevelStore = writable([]);
 
 export const ClassStore = writable([]);
+
+export const RoomStore = writable([]);
