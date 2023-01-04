@@ -19,6 +19,10 @@ I created two simple scripts that will allow you to start and run the frontend a
 - To start frontend run `npm run dev` from the root folder of the project
 - To start Pocketbase run `npm run server` from the root of the project
 
+To access the Admin UI of pocketbase go to [http://127.0.0.1:8090/_/](http://127.0.0.1:8090/_/)
+
+The Svelte application will run on [localhost:5173](http://localhost:5173)
+
 ## Technologies used
 
 As stated above the technologies used in this project are 
