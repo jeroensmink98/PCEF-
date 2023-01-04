@@ -27,7 +27,7 @@
     {#each $BookStore as book }
         <div class="book">
             <div class="book_name">
-                <p>{book.book_name}</p>
+                <p class="text-3xl">{book.book_name}</p>
                 <button on:click={() => deleteBook(book)}>Delete</button>
             </div>
         </div>
