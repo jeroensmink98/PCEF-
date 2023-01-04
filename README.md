@@ -33,3 +33,13 @@ As stated above the technologies used in this project are
     - HTML for markup
     - Tailwind CSS for styling of markup
 - Tailwind CSS
+
+
+## Project structure
+
+The project follows a normal Svelte project structure, every page has its own route so `/book` `/teacher` and `/class` from this page we load in specific components like `BookList` or `BookCreate` that is responsible for showing the UI. A component can also contain some small logic that is used within that component like looping over an array and doing some local data transformations like showing a value in uppercase letters.
+
+All the other logic should be places inside loose modules like `Book.ts` or `Teacher.ts`. These files contain logic/code that should be shared accross components.
+
+For local datastorage we make use of **Svelte Stores** these are local object stores whereby we can easily notify other components that use this store about any update in the data. The component will then update if the data of the store changes.
+
