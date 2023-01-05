@@ -103,5 +103,10 @@ dist
 # TernJS port file
 .tern-port
 
+# Mac
+.DS_Store
+
 server/pb_data
+server/pocketbase
+
 app/src/lib/Pocketbase-types.ts
