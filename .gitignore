@@ -104,3 +104,4 @@ dist
 .tern-port
 
 server/pb_data
+app/src/lib/Pocketbase-types.ts

@@ -8,7 +8,8 @@
   },
   "scripts": {
     "server": "cd server && pocketbase.exe serve",
-    "dev":  "cd app & npm run dev"
+    "dev":  "npm run types && cd app & npm run dev",
+    "types": "npx pocketbase-typegen --db server/pb_data/data.db --out app/src/lib/Pocketbase-types.ts"
   },
   "repository": {
     "type": "git",
