@@ -108,3 +108,5 @@ dist
 
 server/pb_data
 server/pocketbase
+
+app/src/lib/Pocketbase-types.ts
