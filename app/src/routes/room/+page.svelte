@@ -1,5 +1,5 @@
 <script>
-	import RoomList from "$lib/room/RoomList.svelte";
-
+	import RoomList from '$lib/room/RoomList.svelte';
 </script>
-<RoomList/>
+
+<RoomList />
