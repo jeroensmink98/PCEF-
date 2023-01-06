@@ -1,3 +1,11 @@
+<script>
+	import Login from "./login/Login.svelte";
+
+</script>
+<div class="auth">
+	<Login/>
+</div>
+
 <div class="navigation">
 	<a href="/">Home</a>
 	<a href="/teacher">Teachers</a>
