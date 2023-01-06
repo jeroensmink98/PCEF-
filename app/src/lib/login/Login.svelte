@@ -12,10 +12,13 @@
 		try {
 			const data = {
 				username,
-				password
+				password,
+                passwordConfirm : password
 			};
 
 			const createdUser = await pb.collection('users').create(data);
+            console.log(createdUser);
+            
 			await login();
 		} catch (err) {
 			console.log(err);
@@ -29,6 +32,7 @@
 
 {#if $currentUser}
 	<p>Signed in as {$currentUser.username}</p>
+    <button on:click={signOut}>Sign Out</button>
 {:else}
 	<form on:submit|preventDefault>
 		<input placeholder="Username" type="text" bind:value={username} />

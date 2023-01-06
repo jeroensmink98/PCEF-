@@ -1,11 +1,8 @@
-import { derived, writable, type Writable } from 'svelte/store';
-
-
-
+import { writable } from 'svelte/store';
 
 export const TeacherStore = writable([]);
 
-export const bookStore = writable([]);
+export const BookStore = writable();
 
 export const SchoolStore = writable([]);
 

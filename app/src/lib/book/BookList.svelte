@@ -5,6 +5,8 @@
 	import BookCreate from './BookCreate.svelte';
 	import { fetchBooks } from '$lib/Book';
 
+		
+
 	export async function deleteBook(book: any) {
 		try {
 			await pb.collection('book').delete(book.id);

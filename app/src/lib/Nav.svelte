@@ -14,5 +14,6 @@
 	<a href="/level">Levels</a>
 	<a href="/class">Class</a>
 	<a href="/room">Room</a>
+	<a href="/student">Student</a>
 	<hr />
 </div>
